@@ -117,10 +117,10 @@ step: Fabrication/3D/main-3D_0.1.step
 # ERC on following files: main.sch 
 # ERC done against config.yaml
 Fabrication/main-erc_0.1.txt: main.sch config.yaml
-	@$(KIBOT_CMD) -s run_drc -i 2>> $(LOGFILE)
+	@$(KIBOT_CMD) -s run_drc -i 1>> $(LOGFILE)
 
 Fabrication/main-drc_0.1.txt: main.kicad_pcb config.yaml
-	@$(KIBOT_CMD) -s run_erc -i 2>> $(LOGFILE)
+	@$(KIBOT_CMD) -s run_erc -i 1>> $(LOGFILE)
 
 # Gerbers compatible with Elecrow
 Fabrication/Elecrow/main.GTL Fabrication/Elecrow/main.G1 Fabrication/Elecrow/main.G2 Fabrication/Elecrow/main.G3 Fabrication/Elecrow/main.G4 Fabrication/Elecrow/main.GBL Fabrication/Elecrow/main.GTO Fabrication/Elecrow/main.GBO Fabrication/Elecrow/main.GTS Fabrication/Elecrow/main.GBS Fabrication/Elecrow/main.GML: main.kicad_pcb config.yaml
