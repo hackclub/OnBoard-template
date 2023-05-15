@@ -211,7 +211,7 @@ outputs:
       minimal_header: false
       mirror_y_axis: false
       report:
-        filename: 'spora-drl.rpt'
+        filename: 'drl.rpt'
       map:
         type: 'pdf'
 
