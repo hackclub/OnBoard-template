@@ -5,17 +5,17 @@ name: "KiCad CI/CD for main board"
 on:
   push:
     paths:
-      - 'main/*.sch'
-      - 'main/*.kicad_pcb'
-      - 'main/*.kibot.yaml'
-      - 'main/Makefile'
+      - 'src/*.sch'
+      - 'src/*.kicad_pcb'
+      - 'src/*.kibot.yaml'
+      - 'src/Makefile'
       - '.github/workflows/main.yml'
   pull_request:
     paths:
-      - 'main/*.sch'
-      - 'main/*.kicad_pcb'
-      - 'main/*.kibot.yaml'
-      - 'main/Makefile'
+      - 'src/*.sch'
+      - 'src/*.kicad_pcb'
+      - 'src/*.kibot.yaml'
+      - 'src/Makefile'
       - '.github/workflows/main.yml'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -29,13 +29,13 @@ jobs:
 
     - name: Run ERC
       run: |
-        make -C main erc
+        make -C src erc
 
     - name: Retrieve results
       uses: actions/upload-artifact@v3
       with:
         name: ERC_Output
-        path: main/Fabrication
+        path: src/Fabrication
 
   DRC:
     runs-on: ubuntu-latest
@@ -47,13 +47,13 @@ jobs:
 
     - name: Run DRC
       run: |
-        make -C main drc
+        make -C src drc
 
     - name: Retrieve results
       uses: actions/upload-artifact@v3
       with:
         name: DRC_Output
-        path: main/Fabrication
+        path: src/Fabrication
 
   FabSch:
     name: Schematic fabrication files
@@ -66,7 +66,7 @@ jobs:
 
     - name: Run schematic stuff
       run: |
-        make -C main sch_fab
+        make -C src sch_fab
 
     - name: Retrieve results
       if: ${{ always() }}
@@ -74,8 +74,8 @@ jobs:
       with:
         name: FabSch_Output
         path: |
-          main/Fabrication/
-          main/kibot_error.log
+          src/Fabrication/
+          src/kibot_error.log
         if-no-files-found: warn
 
   FabPCB:
@@ -89,7 +89,7 @@ jobs:
 
     - name: Run PCB stuff
       run: |
-        make -C main pcb_fab
+        make -C src pcb_fab
 
     - name: Retrieve results
       if: ${{ always() }}
@@ -97,8 +97,8 @@ jobs:
       with:
         name: FabPCB_Output
         path: |
-          main/Fabrication/
-          main/kibot_error.log
+          src/Fabrication/
+          src/kibot_error.log
         if-no-files-found: warn
 
 
