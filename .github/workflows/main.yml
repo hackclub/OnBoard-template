@@ -2,21 +2,21 @@ name: "KiCad CI/CD for main board"
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
-on:
-  push:
-    paths:
-      - 'src/*.sch'
-      - 'src/*.kicad_pcb'
-      - 'src/*.kibot.yaml'
-      - 'src/Makefile'
-      - '.github/workflows/main.yml'
-  pull_request:
-    paths:
-      - 'src/*.sch'
-      - 'src/*.kicad_pcb'
-      - 'src/*.kibot.yaml'
-      - 'src/Makefile'
-      - '.github/workflows/main.yml'
+on: push
+  # push:
+  #   paths:
+  #     - 'src/*.sch'
+  #     - 'src/*.kicad_pcb'
+  #     - 'src/*.kibot.yaml'
+  #     - 'src/Makefile'
+  #     - '.github/workflows/main.yml'
+  # pull_request:
+  #   paths:
+  #     - 'src/*.sch'
+  #     - 'src/*.kicad_pcb'
+  #     - 'src/*.kibot.yaml'
+  #     - 'src/Makefile'
+  #     - '.github/workflows/main.yml'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
