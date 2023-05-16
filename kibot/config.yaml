@@ -52,14 +52,14 @@ outputs:
   - name: 'interactive_bom'
     comment: "Interactive Bill of Materials (HTML)"
     type: ibom
-    dir: BoM
+    dir: BOM
     options:
       blacklist: 'DNF*'
 
   - name: 'bom_html'
     comment: "Bill of Materials in HTML format"
     type: bom
-    dir: BoM
+    dir: BOM
     options: &bom_options
       columns:
         - Row
@@ -91,7 +91,7 @@ outputs:
   - name: 'bom_xlsx'
     comment: "Bill of Materials in XLSX format"
     type: bom
-    dir: BoM
+    dir: BOM
     options:
       <<: *bom_options
       format: XLSX
@@ -103,7 +103,7 @@ outputs:
   - name: 'bom_csv'
     comment: "Bill of Materials in CSV format"
     type: bom
-    dir: BoM
+    dir: BOM
     options:
       <<: *bom_options
       format: CSV
