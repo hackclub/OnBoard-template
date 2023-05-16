@@ -16,7 +16,7 @@ LOGFILE=kibot_error.log
 #
 # Default target
 #
-all: run_erc run_drc JLCPCB_gerbers JLCPCB_drill JLCPCB print_sch print_front print_bottom print_gnd print_power print_s1 print_s2 interactive_bom bom_html bom_xlsx bom_csv gerbers excellon_drill gerber_drills position pcb_top_g pcb_bot_g pcb_top_b pcb_bot_b pcb_top_r pcb_bot_r step
+all: run_erc run_drc JLCPCB_gerbers JLCPCB_drill JLCPCB print_sch print_front print_bottom interactive_bom bom_html bom_xlsx bom_csv gerbers excellon_drill gerber_drills position pcb_top_g pcb_bot_g pcb_top_b pcb_bot_b pcb_top_r pcb_bot_r step
 
 #
 # SCH/PCB targets
@@ -30,9 +30,9 @@ all_sch: pre_sch out_sch
 pre_pcb: run_drc
 
 # Support for non-JLCPCB PCB manufacturers
-# out_pcb: Elecrow_gerbers Elecrow_drill Elecrow FusionPCB_gerbers FusionPCB_drill FusionPCB JLCPCB_gerbers JLCPCB_drill JLCPCB P-Ban_gerbers P-Ban_drill P-Ban PCBWay_gerbers PCBWay_drill PCBWay print_front print_bottom print_gnd print_power print_s1 print_s2 interactive_bom gerbers excellon_drill gerber_drills position pcb_top_g pcb_bot_g pcb_top_b pcb_bot_b pcb_top_r pcb_bot_r step
+# out_pcb: Elecrow_gerbers Elecrow_drill Elecrow FusionPCB_gerbers FusionPCB_drill FusionPCB JLCPCB_gerbers JLCPCB_drill JLCPCB P-Ban_gerbers P-Ban_drill P-Ban PCBWay_gerbers PCBWay_drill PCBWay print_front print_bottom interactive_bom gerbers excellon_drill gerber_drills position pcb_top_g pcb_bot_g pcb_top_b pcb_bot_b pcb_top_r pcb_bot_r step
 
-out_pcb: JLCPCB_gerbers JLCPCB_drill JLCPCB print_front print_bottom print_gnd print_power print_s1 print_s2 interactive_bom gerbers excellon_drill gerber_drills position pcb_top_g pcb_bot_g pcb_top_b pcb_bot_b pcb_top_r pcb_bot_r step
+out_pcb: JLCPCB_gerbers JLCPCB_drill JLCPCB print_front print_bottom interactive_bom gerbers excellon_drill gerber_drills position pcb_top_g pcb_bot_g pcb_top_b pcb_bot_b pcb_top_r pcb_bot_r step
 
 all_pcb: pre_pcb out_pcb
 
@@ -78,14 +78,6 @@ print_sch: Fabrication/main-schematic_0.1.pdf
 print_front: Fabrication/main-F_Cu+Dwgs_User_0.1.pdf
 
 print_bottom: Fabrication/main-B_Cu+Dwgs_User_0.1.pdf
-
-print_gnd: Fabrication/main-GND+Dwgs_User_0.1.pdf
-
-print_power: Fabrication/main-Power_+3,3V+Dwgs_User_0.1.pdf
-
-print_s1: Fabrication/main-S1_Cu+Dwgs_User_0.1.pdf
-
-print_s2: Fabrication/main-S2_Cu+Dwgs_User_0.1.pdf
 
 interactive_bom: Fabrication/BoM/main-ibom_0.1.html
 
@@ -201,22 +193,6 @@ Fabrication/main-F_Cu+Dwgs_User_0.1.pdf: main.kicad_pcb config.yaml
 Fabrication/main-B_Cu+Dwgs_User_0.1.pdf: main.kicad_pcb config.yaml
 	@$(KIBOT_CMD) -s all print_bottom 1>> $(LOGFILE)
 
-# Print GND+Dwgs.User
-Fabrication/main-GND+Dwgs_User_0.1.pdf: main.kicad_pcb config.yaml
-	@$(KIBOT_CMD) -s all print_gnd 1>> $(LOGFILE)
-
-# Print Power_+3,3V+Dwgs.User
-Fabrication/main-Power_+3,3V+Dwgs_User_0.1.pdf: main.kicad_pcb config.yaml
-	@$(KIBOT_CMD) -s all print_power 1>> $(LOGFILE)
-
-# Print Señal_1+Dwgs.User
-Fabrication/main-S1_Cu+Dwgs_User_0.1.pdf: main.kicad_pcb config.yaml
-	@$(KIBOT_CMD) -s all print_s1 1>> $(LOGFILE)
-
-# Print Señal_2+Dwgs.User
-Fabrication/main-S2_Cu+Dwgs_User_0.1.pdf: main.kicad_pcb config.yaml
-	@$(KIBOT_CMD) -s all print_s2 1>> $(LOGFILE)
-
 # Interactive Bill of Materials (HTML)
 Fabrication/BoM/main-ibom_0.1.html: main.kicad_pcb config.yaml
 	@$(KIBOT_CMD) -s all interactive_bom 1>> $(LOGFILE)
@@ -280,4 +256,4 @@ Fabrication/PCB/red/main-bottom_0.1.jpg: main.kicad_pcb config.yaml
 # Fabrication/3D/main-3D_0.1.step: main.kicad_pcb ../modelos.3dshapes/B3U_3000PB.wrl ../modelos.3dshapes/MPU-9250.wrl ../modelos.3dshapes/usb_B_micro_smd.wrl ../modelos.3dshapes/MCP73821.wrl ../modelos.3dshapes/c_0201.wrl ../modelos.3dshapes/c_0402.wrl ../modelos.3dshapes/LBCA2HNZYZ-711.wrl ../modelos.3dshapes/MKL03Z32CAF4R_20-WLCSP_1.995x1.609.wrl ../modelos.3dshapes/sod323.wrl ../modelos.3dshapes/TPS2115A.wrl ../modelos.3dshapes/ABS05-32.768KHZ-9-T.wrl ../modelos.3dshapes/r_0402.wrl ../modelos.3dshapes/SML-LX0404SIUPGUSB.wrl ../modelos.3dshapes/df12(3.0)-10dp-0.5v.wrl ../modelos.3dshapes/r_0201.wrl ../modelos.3dshapes/TPS82740B.wrl config.yaml
 # 	@$(KIBOT_CMD) -s all step 1>> $(LOGFILE)
 
-.PHONY: all pre_sch out_sch all_sch pre_pcb out_pcb all_pcb run_erc run_drc Elecrow_gerbers Elecrow_drill Elecrow FusionPCB_gerbers FusionPCB_drill FusionPCB JLCPCB_gerbers JLCPCB_drill JLCPCB P-Ban_gerbers P-Ban_drill P-Ban PCBWay_gerbers PCBWay_drill PCBWay print_sch print_front print_bottom print_gnd print_power print_s1 print_s2 interactive_bom bom_html bom_xlsx bom_csv gerbers excellon_drill gerber_drills position pcb_top_g pcb_bot_g pcb_top_b pcb_bot_b pcb_top_r pcb_bot_r step
+.PHONY: all pre_sch out_sch all_sch pre_pcb out_pcb all_pcb run_erc run_drc Elecrow_gerbers Elecrow_drill Elecrow FusionPCB_gerbers FusionPCB_drill FusionPCB JLCPCB_gerbers JLCPCB_drill JLCPCB P-Ban_gerbers P-Ban_drill P-Ban PCBWay_gerbers PCBWay_drill PCBWay print_sch print_front print_bottom interactive_bom bom_html bom_xlsx bom_csv gerbers excellon_drill gerber_drills position pcb_top_g pcb_bot_g pcb_top_b pcb_bot_b pcb_top_r pcb_bot_r step
