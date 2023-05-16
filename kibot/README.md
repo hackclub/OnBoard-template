@@ -2,11 +2,11 @@
 Hey there! Did you know this repo automatically ERC, DRC and generates Gerbers from your design in `src`?
 
 ## How It Works
-KiBot will go through `src` and comb for any files following the default naming scheme `main.sch`, `main.kicad_pcb`, and `main.pro`. After doing so, it then runs INTI-CMNB's KiCAD Automation Scripts, which mimics KiCAD's own ERC/DRC processes. It will then summarize its results in Github Actions' Artifacts (`DRC`, `ERC`).
+KiBot will go through `src` and comb for any files following the default naming scheme `main.sch`, `main.kicad_pcb`, and `main.pro`. After doing so, it then runs KiCAD's own ERC/DRC tests, summarizing its results in Github Actions' Artifacts (`DRC`, `ERC`).
 
 After running ERC and DRC, `OnBoard-template` also outputs a `FabPCB` folder, which contains automatically generated Gerbers for JLCPCB [^2]. 
 
-Here is a quick rundown on its outputs:
+Here is a quick rundown on what you'll find as outputs:
 ```bash
 ├── ERC/                # Electrical Rule Check
 │   └── main-erc            # Summarizes ERC errors. Does not include warnings
@@ -21,7 +21,21 @@ Here is a quick rundown on its outputs:
 │           └── main-bom.xslx
 │   └── kibot_error         # Summarizes warnings in FabSCH generation
 ├── FabPCB/             # Fabrication output
-
+│   └── Fabrication/        
+│       └── main-F-Cu       # Top copper layer pdf
+│       └── main-B-Cu       # Bottom copper layer pdf
+│       └── BOM/            
+│           └── main-ibon   # Online interactive BOM
+│       └── Drill/          
+│           └── ...         # Gerber, DRL, RPT, and PDFs for drill paths
+│       └── Gerbers/          
+│           └── ...         # Gerbers of layers specified in config (Cu, Mask, Paste, Silk Screen)
+│       └── JLCPCB/          
+│           └── ...         # Gerber files for JLCPCB fab. Directly uploadable.
+│       └── Renders/
+│           └── ...         # PNG renders of top and bottom in blue, green, and red masks. 
+│       └── Position/
+│           └── ...         # Position for top and bottom layers
 ```
 
 
