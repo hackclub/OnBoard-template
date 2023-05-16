@@ -98,20 +98,20 @@ outputs:
       columns:
         - Row
         - field: References
-          name: Referencias
+          name: References
         - field: Part
-          name: Parte
+          name: Part
         - field: Value
-          name: Valor
+          name: Value
         - field: manf#
           name: P/N
         - field: manf
-          name: Fabricante
+          name: Manufacturer
         - field: digikey#
           name: 'Cod. Digi-Key'
         - Footprint
         - field: Desc
-          name: Descripción
+          name: Description
         - 'Quantity Per PCB'
       group_fields:  ['digikey#', 'Part']
       normalize_values: true
@@ -143,7 +143,7 @@ outputs:
       format: CSV
 
   - name: 'gerbers'
-    comment: "Gerbers for the board house"
+    comment: "Gerbers for fabs"
     type: gerber
     dir: Gerbers
     options:
