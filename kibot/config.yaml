@@ -13,11 +13,11 @@ global:
   output: '%f-%i_%r.%x'
 
 import:
-  - /fabs/Elecrow.kibot.yaml
-  - /fabs/FusionPCB.kibot.yaml
-  - /fabs/JLCPCB.kibot.yaml
-  - /fabs/P-Ban.kibot.yaml
-  - /fabs/PCBWay.kibot.yaml
+  - fabs/Elecrow.kibot.yaml
+  - fabs/FusionPCB.kibot.yaml
+  - fabs/JLCPCB.kibot.yaml
+  - fabs/P-Ban.kibot.yaml
+  - fabs/PCBWay.kibot.yaml
 
 filters:
  - name: 'exclude_any'
