@@ -16,7 +16,7 @@ LOGFILE=kibot_error.log
 #
 # Default target
 #
-all: run_erc run_drc Elecrow_gerbers Elecrow_drill Elecrow FusionPCB_gerbers FusionPCB_drill FusionPCB JLCPCB_gerbers JLCPCB_drill JLCPCB P-Ban_gerbers P-Ban_drill P-Ban PCBWay_gerbers PCBWay_drill PCBWay print_sch print_front print_bottom print_gnd print_power print_s1 print_s2 interactive_bom bom_html bom_xlsx bom_csv gerbers excellon_drill gerber_drills position pcb_top_g pcb_bot_g pcb_top_b pcb_bot_b pcb_top_r pcb_bot_r step
+all: run_erc run_drc JLCPCB_gerbers JLCPCB_drill JLCPCB print_sch print_front print_bottom print_gnd print_power print_s1 print_s2 interactive_bom bom_html bom_xlsx bom_csv gerbers excellon_drill gerber_drills position pcb_top_g pcb_bot_g pcb_top_b pcb_bot_b pcb_top_r pcb_bot_r step
 
 #
 # SCH/PCB targets
@@ -29,7 +29,10 @@ all_sch: pre_sch out_sch
 
 pre_pcb: run_drc
 
-out_pcb: Elecrow_gerbers Elecrow_drill Elecrow FusionPCB_gerbers FusionPCB_drill FusionPCB JLCPCB_gerbers JLCPCB_drill JLCPCB P-Ban_gerbers P-Ban_drill P-Ban PCBWay_gerbers PCBWay_drill PCBWay print_front print_bottom print_gnd print_power print_s1 print_s2 interactive_bom gerbers excellon_drill gerber_drills position pcb_top_g pcb_bot_g pcb_top_b pcb_bot_b pcb_top_r pcb_bot_r step
+# Support for non-JLCPCB PCB manufacturers
+# out_pcb: Elecrow_gerbers Elecrow_drill Elecrow FusionPCB_gerbers FusionPCB_drill FusionPCB JLCPCB_gerbers JLCPCB_drill JLCPCB P-Ban_gerbers P-Ban_drill P-Ban PCBWay_gerbers PCBWay_drill PCBWay print_front print_bottom print_gnd print_power print_s1 print_s2 interactive_bom gerbers excellon_drill gerber_drills position pcb_top_g pcb_bot_g pcb_top_b pcb_bot_b pcb_top_r pcb_bot_r step
+
+out_pcb: JLCPCB_gerbers JLCPCB_drill JLCPCB print_front print_bottom print_gnd print_power print_s1 print_s2 interactive_bom gerbers excellon_drill gerber_drills position pcb_top_g pcb_bot_g pcb_top_b pcb_bot_b pcb_top_r pcb_bot_r step
 
 all_pcb: pre_pcb out_pcb
 
@@ -40,17 +43,17 @@ run_erc: Fabrication/main-erc_0.1.txt
 
 run_drc: Fabrication/main-drc_0.1.txt
 
-Elecrow_gerbers: Fabrication/Elecrow/main.GTL Fabrication/Elecrow/main.G1 Fabrication/Elecrow/main.G2 Fabrication/Elecrow/main.G3 Fabrication/Elecrow/main.G4 Fabrication/Elecrow/main.GBL Fabrication/Elecrow/main.GTO Fabrication/Elecrow/main.GBO Fabrication/Elecrow/main.GTS Fabrication/Elecrow/main.GBS Fabrication/Elecrow/main.GML
+# Elecrow_gerbers: Fabrication/Elecrow/main.GTL Fabrication/Elecrow/main.G1 Fabrication/Elecrow/main.G2 Fabrication/Elecrow/main.G3 Fabrication/Elecrow/main.G4 Fabrication/Elecrow/main.GBL Fabrication/Elecrow/main.GTO Fabrication/Elecrow/main.GBO Fabrication/Elecrow/main.GTS Fabrication/Elecrow/main.GBS Fabrication/Elecrow/main.GML
 
-Elecrow_drill: Fabrication/Elecrow/main.TXT Fabrication/Elecrow/main-NPTH.TXT
+# Elecrow_drill: Fabrication/Elecrow/main.TXT Fabrication/Elecrow/main-NPTH.TXT
 
-Elecrow: Fabrication/Elecrow/main-Elecrow_0.1.zip
+# Elecrow: Fabrication/Elecrow/main-Elecrow_0.1.zip
 
-FusionPCB_gerbers: Fabrication/FusionPCB/main.GTL Fabrication/FusionPCB/main.GL2 Fabrication/FusionPCB/main.GL3 Fabrication/FusionPCB/main.GL4 Fabrication/FusionPCB/main.GL5 Fabrication/FusionPCB/main.GBL Fabrication/FusionPCB/main.GTO Fabrication/FusionPCB/main.GBO Fabrication/FusionPCB/main.GTS Fabrication/FusionPCB/main.GBS Fabrication/FusionPCB/main.GML
+# FusionPCB_gerbers: Fabrication/FusionPCB/main.GTL Fabrication/FusionPCB/main.GL2 Fabrication/FusionPCB/main.GL3 Fabrication/FusionPCB/main.GL4 Fabrication/FusionPCB/main.GL5 Fabrication/FusionPCB/main.GBL Fabrication/FusionPCB/main.GTO Fabrication/FusionPCB/main.GBO Fabrication/FusionPCB/main.GTS Fabrication/FusionPCB/main.GBS Fabrication/FusionPCB/main.GML
 
-FusionPCB_drill: Fabrication/FusionPCB/main.TXT
+# FusionPCB_drill: Fabrication/FusionPCB/main.TXT
 
-FusionPCB: Fabrication/FusionPCB/main-FusionPCB_0.1.zip
+# FusionPCB: Fabrication/FusionPCB/main-FusionPCB_0.1.zip
 
 JLCPCB_gerbers: Fabrication/JLCPCB/main-F_Cu_0.1.gbr Fabrication/JLCPCB/main-B_Cu_0.1.gbr Fabrication/JLCPCB/main-In1_Cu_0.1.gbr Fabrication/JLCPCB/main-In2_Cu_0.1.gbr Fabrication/JLCPCB/main-In3_Cu_0.1.gbr Fabrication/JLCPCB/main-In4_Cu_0.1.gbr Fabrication/JLCPCB/main-F_SilkS_0.1.gbr Fabrication/JLCPCB/main-B_SilkS_0.1.gbr Fabrication/JLCPCB/main-F_Mask_0.1.gbr Fabrication/JLCPCB/main-B_Mask_0.1.gbr Fabrication/JLCPCB/main-Edge_Cuts_0.1.gbr
 
@@ -58,17 +61,17 @@ JLCPCB_drill: Fabrication/JLCPCB/main-PTH.drl Fabrication/JLCPCB/main-NPTH.drl
 
 JLCPCB: Fabrication/JLCPCB/main-JLCPCB_0.1.zip
 
-P-Ban_gerbers: Fabrication/P-Ban/main-F_Cu_0.1.gtl Fabrication/P-Ban/main-B_Cu_0.1.gbl Fabrication/P-Ban/main-In1_Cu_0.1.gp1 Fabrication/P-Ban/main-In2_Cu_0.1.gp2 Fabrication/P-Ban/main-In3_Cu_0.1.gp3 Fabrication/P-Ban/main-In4_Cu_0.1.gp4 Fabrication/P-Ban/main-F_SilkS_0.1.gto Fabrication/P-Ban/main-B_SilkS_0.1.gbo Fabrication/P-Ban/main-F_Mask_0.1.gts Fabrication/P-Ban/main-B_Mask_0.1.gbs Fabrication/P-Ban/main-Edge_Cuts_0.1.gm1 Fabrication/P-Ban/製造基準書.txt
+# P-Ban_gerbers: Fabrication/P-Ban/main-F_Cu_0.1.gtl Fabrication/P-Ban/main-B_Cu_0.1.gbl Fabrication/P-Ban/main-In1_Cu_0.1.gp1 Fabrication/P-Ban/main-In2_Cu_0.1.gp2 Fabrication/P-Ban/main-In3_Cu_0.1.gp3 Fabrication/P-Ban/main-In4_Cu_0.1.gp4 Fabrication/P-Ban/main-F_SilkS_0.1.gto Fabrication/P-Ban/main-B_SilkS_0.1.gbo Fabrication/P-Ban/main-F_Mask_0.1.gts Fabrication/P-Ban/main-B_Mask_0.1.gbs Fabrication/P-Ban/main-Edge_Cuts_0.1.gm1 Fabrication/P-Ban/製造基準書.txt
 
-P-Ban_drill: Fabrication/P-Ban/main.drl Fabrication/P-Ban/main-drill_map_0.1.gbr Fabrication/P-Ban/main-drl.rpt
+# P-Ban_drill: Fabrication/P-Ban/main.drl Fabrication/P-Ban/main-drill_map_0.1.gbr Fabrication/P-Ban/main-drl.rpt
 
-P-Ban: Fabrication/P-Ban/main-P-Ban_0.1.zip
+# P-Ban: Fabrication/P-Ban/main-P-Ban_0.1.zip
 
-PCBWay_gerbers: Fabrication/PCBWay/main.gtl Fabrication/PCBWay/main.gl2 Fabrication/PCBWay/main.gl3 Fabrication/PCBWay/main.gl4 Fabrication/PCBWay/main.gl5 Fabrication/PCBWay/main.gbl Fabrication/PCBWay/main.gto Fabrication/PCBWay/main.gbo Fabrication/PCBWay/main.gts Fabrication/PCBWay/main.gbs Fabrication/PCBWay/main.gtp Fabrication/PCBWay/main.gbp Fabrication/PCBWay/main.gm1
+# PCBWay_gerbers: Fabrication/PCBWay/main.gtl Fabrication/PCBWay/main.gl2 Fabrication/PCBWay/main.gl3 Fabrication/PCBWay/main.gl4 Fabrication/PCBWay/main.gl5 Fabrication/PCBWay/main.gbl Fabrication/PCBWay/main.gto Fabrication/PCBWay/main.gbo Fabrication/PCBWay/main.gts Fabrication/PCBWay/main.gbs Fabrication/PCBWay/main.gtp Fabrication/PCBWay/main.gbp Fabrication/PCBWay/main.gm1
 
-PCBWay_drill: Fabrication/PCBWay/main.drl Fabrication/PCBWay/main-NPTH.drl
+# PCBWay_drill: Fabrication/PCBWay/main.drl Fabrication/PCBWay/main-NPTH.drl
 
-PCBWay: Fabrication/PCBWay/main-PCBWay_0.1.zip
+# PCBWay: Fabrication/PCBWay/main-PCBWay_0.1.zip
 
 print_sch: Fabrication/main-schematic_0.1.pdf
 
