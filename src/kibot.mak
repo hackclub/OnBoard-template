@@ -3,6 +3,10 @@
 KIBOT=kibot
 DEBUG=
 CONFIG=config.yaml
+
+# Specify the schematic file(s) to process
+# SCHEMATICS = main.sh main2.sch
+SCHEMATICS=main.sch Power.sch
 SCH=main.sch
 PCB=main.kicad_pcb
 DEST=Fabrication
@@ -116,35 +120,35 @@ pcb_bot_r: Fabrication/PCB/red/main-bottom_0.1.jpg
 
 # ERC on following files: main.sch 
 # ERC done against config.yaml
-Fabrication/main-erc_0.1.txt: main.sch config.yaml
+Fabrication/main-erc_0.1.txt: $(SCHEMATICS) config.yaml
 	@$(KIBOT_CMD) -s run_drc -i 1>> $(LOGFILE)
 
 Fabrication/main-drc_0.1.txt: main.kicad_pcb config.yaml
 	@$(KIBOT_CMD) -s run_erc -i 1>> $(LOGFILE)
 
-# Gerbers compatible with Elecrow
-Fabrication/Elecrow/main.GTL Fabrication/Elecrow/main.G1 Fabrication/Elecrow/main.G2 Fabrication/Elecrow/main.G3 Fabrication/Elecrow/main.G4 Fabrication/Elecrow/main.GBL Fabrication/Elecrow/main.GTO Fabrication/Elecrow/main.GBO Fabrication/Elecrow/main.GTS Fabrication/Elecrow/main.GBS Fabrication/Elecrow/main.GML: main.kicad_pcb config.yaml
-	@$(KIBOT_CMD) -s all Elecrow_gerbers 1>> $(LOGFILE)
+# # Gerbers compatible with Elecrow
+# Fabrication/Elecrow/main.GTL Fabrication/Elecrow/main.G1 Fabrication/Elecrow/main.G2 Fabrication/Elecrow/main.G3 Fabrication/Elecrow/main.G4 Fabrication/Elecrow/main.GBL Fabrication/Elecrow/main.GTO Fabrication/Elecrow/main.GBO Fabrication/Elecrow/main.GTS Fabrication/Elecrow/main.GBS Fabrication/Elecrow/main.GML: main.kicad_pcb config.yaml
+# 	@$(KIBOT_CMD) -s all Elecrow_gerbers 1>> $(LOGFILE)
 
-# Drill files compatible with Elecrow
-Fabrication/Elecrow/main.TXT Fabrication/Elecrow/main-NPTH.TXT: main.kicad_pcb config.yaml
-	@$(KIBOT_CMD) -s all Elecrow_drill 1>> $(LOGFILE)
+# # Drill files compatible with Elecrow
+# Fabrication/Elecrow/main.TXT Fabrication/Elecrow/main-NPTH.TXT: main.kicad_pcb config.yaml
+# 	@$(KIBOT_CMD) -s all Elecrow_drill 1>> $(LOGFILE)
 
-# ZIP file for Elecrow
-Fabrication/Elecrow/main-Elecrow_0.1.zip: config.yaml
-	@$(KIBOT_CMD) -s all Elecrow 1>> $(LOGFILE)
+# # ZIP file for Elecrow
+# Fabrication/Elecrow/main-Elecrow_0.1.zip: config.yaml
+# 	@$(KIBOT_CMD) -s all Elecrow 1>> $(LOGFILE)
 
-# Gerbers compatible with FusionPCB
-Fabrication/FusionPCB/main.GTL Fabrication/FusionPCB/main.GL2 Fabrication/FusionPCB/main.GL3 Fabrication/FusionPCB/main.GL4 Fabrication/FusionPCB/main.GL5 Fabrication/FusionPCB/main.GBL Fabrication/FusionPCB/main.GTO Fabrication/FusionPCB/main.GBO Fabrication/FusionPCB/main.GTS Fabrication/FusionPCB/main.GBS Fabrication/FusionPCB/main.GML: main.kicad_pcb config.yaml
-	@$(KIBOT_CMD) -s all FusionPCB_gerbers 1>> $(LOGFILE)
+# # Gerbers compatible with FusionPCB
+# Fabrication/FusionPCB/main.GTL Fabrication/FusionPCB/main.GL2 Fabrication/FusionPCB/main.GL3 Fabrication/FusionPCB/main.GL4 Fabrication/FusionPCB/main.GL5 Fabrication/FusionPCB/main.GBL Fabrication/FusionPCB/main.GTO Fabrication/FusionPCB/main.GBO Fabrication/FusionPCB/main.GTS Fabrication/FusionPCB/main.GBS Fabrication/FusionPCB/main.GML: main.kicad_pcb config.yaml
+# 	@$(KIBOT_CMD) -s all FusionPCB_gerbers 1>> $(LOGFILE)
 
-# Drill files compatible with FusionPCB
-Fabrication/FusionPCB/main.TXT: main.kicad_pcb config.yaml
-	@$(KIBOT_CMD) -s all FusionPCB_drill 1>> $(LOGFILE)
+# # Drill files compatible with FusionPCB
+# Fabrication/FusionPCB/main.TXT: main.kicad_pcb config.yaml
+# 	@$(KIBOT_CMD) -s all FusionPCB_drill 1>> $(LOGFILE)
 
-# ZIP file for FusionPCB
-Fabrication/FusionPCB/main-FusionPCB_0.1.zip: config.yaml
-	@$(KIBOT_CMD) -s all FusionPCB 1>> $(LOGFILE)
+# # ZIP file for FusionPCB
+# Fabrication/FusionPCB/main-FusionPCB_0.1.zip: config.yaml
+# 	@$(KIBOT_CMD) -s all FusionPCB 1>> $(LOGFILE)
 
 # Gerbers compatible with JLCPCB
 Fabrication/JLCPCB/main-F_Cu_0.1.gbr Fabrication/JLCPCB/main-B_Cu_0.1.gbr Fabrication/JLCPCB/main-In1_Cu_0.1.gbr Fabrication/JLCPCB/main-In2_Cu_0.1.gbr Fabrication/JLCPCB/main-In3_Cu_0.1.gbr Fabrication/JLCPCB/main-In4_Cu_0.1.gbr Fabrication/JLCPCB/main-F_SilkS_0.1.gbr Fabrication/JLCPCB/main-B_SilkS_0.1.gbr Fabrication/JLCPCB/main-F_Mask_0.1.gbr Fabrication/JLCPCB/main-B_Mask_0.1.gbr Fabrication/JLCPCB/main-Edge_Cuts_0.1.gbr: main.kicad_pcb config.yaml
@@ -158,32 +162,32 @@ Fabrication/JLCPCB/main-PTH.drl Fabrication/JLCPCB/main-NPTH.drl: main.kicad_pcb
 Fabrication/JLCPCB/main-JLCPCB_0.1.zip: config.yaml
 	@$(KIBOT_CMD) -s all JLCPCB 1>> $(LOGFILE)
 
-# Gerbers compatible with P-Ban
-Fabrication/P-Ban/main-F_Cu_0.1.gtl Fabrication/P-Ban/main-B_Cu_0.1.gbl Fabrication/P-Ban/main-In1_Cu_0.1.gp1 Fabrication/P-Ban/main-In2_Cu_0.1.gp2 Fabrication/P-Ban/main-In3_Cu_0.1.gp3 Fabrication/P-Ban/main-In4_Cu_0.1.gp4 Fabrication/P-Ban/main-F_SilkS_0.1.gto Fabrication/P-Ban/main-B_SilkS_0.1.gbo Fabrication/P-Ban/main-F_Mask_0.1.gts Fabrication/P-Ban/main-B_Mask_0.1.gbs Fabrication/P-Ban/main-Edge_Cuts_0.1.gm1 Fabrication/P-Ban/製造基準書.txt: main.kicad_pcb config.yaml
-	@$(KIBOT_CMD) -s all P-Ban_gerbers 1>> $(LOGFILE)
+# # Gerbers compatible with P-Ban
+# Fabrication/P-Ban/main-F_Cu_0.1.gtl Fabrication/P-Ban/main-B_Cu_0.1.gbl Fabrication/P-Ban/main-In1_Cu_0.1.gp1 Fabrication/P-Ban/main-In2_Cu_0.1.gp2 Fabrication/P-Ban/main-In3_Cu_0.1.gp3 Fabrication/P-Ban/main-In4_Cu_0.1.gp4 Fabrication/P-Ban/main-F_SilkS_0.1.gto Fabrication/P-Ban/main-B_SilkS_0.1.gbo Fabrication/P-Ban/main-F_Mask_0.1.gts Fabrication/P-Ban/main-B_Mask_0.1.gbs Fabrication/P-Ban/main-Edge_Cuts_0.1.gm1 Fabrication/P-Ban/製造基準書.txt: main.kicad_pcb config.yaml
+# 	@$(KIBOT_CMD) -s all P-Ban_gerbers 1>> $(LOGFILE)
 
-# Drill files compatible with P-Ban
-Fabrication/P-Ban/main.drl Fabrication/P-Ban/main-drill_map_0.1.gbr Fabrication/P-Ban/main-drl.rpt: main.kicad_pcb config.yaml
-	@$(KIBOT_CMD) -s all P-Ban_drill 1>> $(LOGFILE)
+# # Drill files compatible with P-Ban
+# Fabrication/P-Ban/main.drl Fabrication/P-Ban/main-drill_map_0.1.gbr Fabrication/P-Ban/main-drl.rpt: main.kicad_pcb config.yaml
+# 	@$(KIBOT_CMD) -s all P-Ban_drill 1>> $(LOGFILE)
 
-# ZIP file for P-Ban
-Fabrication/P-Ban/main-P-Ban_0.1.zip: config.yaml
-	@$(KIBOT_CMD) -s all P-Ban 1>> $(LOGFILE)
+# # ZIP file for P-Ban
+# Fabrication/P-Ban/main-P-Ban_0.1.zip: config.yaml
+# 	@$(KIBOT_CMD) -s all P-Ban 1>> $(LOGFILE)
 
-# Gerbers compatible with PCBWay
-Fabrication/PCBWay/main.gtl Fabrication/PCBWay/main.gl2 Fabrication/PCBWay/main.gl3 Fabrication/PCBWay/main.gl4 Fabrication/PCBWay/main.gl5 Fabrication/PCBWay/main.gbl Fabrication/PCBWay/main.gto Fabrication/PCBWay/main.gbo Fabrication/PCBWay/main.gts Fabrication/PCBWay/main.gbs Fabrication/PCBWay/main.gtp Fabrication/PCBWay/main.gbp Fabrication/PCBWay/main.gm1: main.kicad_pcb config.yaml
-	@$(KIBOT_CMD) -s all PCBWay_gerbers 1>> $(LOGFILE)
+# # Gerbers compatible with PCBWay
+# Fabrication/PCBWay/main.gtl Fabrication/PCBWay/main.gl2 Fabrication/PCBWay/main.gl3 Fabrication/PCBWay/main.gl4 Fabrication/PCBWay/main.gl5 Fabrication/PCBWay/main.gbl Fabrication/PCBWay/main.gto Fabrication/PCBWay/main.gbo Fabrication/PCBWay/main.gts Fabrication/PCBWay/main.gbs Fabrication/PCBWay/main.gtp Fabrication/PCBWay/main.gbp Fabrication/PCBWay/main.gm1: main.kicad_pcb config.yaml
+# 	@$(KIBOT_CMD) -s all PCBWay_gerbers 1>> $(LOGFILE)
 
-# Drill files compatible with PCBWay
-Fabrication/PCBWay/main.drl Fabrication/PCBWay/main-NPTH.drl: main.kicad_pcb config.yaml
-	@$(KIBOT_CMD) -s all PCBWay_drill 1>> $(LOGFILE)
+# # Drill files compatible with PCBWay
+# Fabrication/PCBWay/main.drl Fabrication/PCBWay/main-NPTH.drl: main.kicad_pcb config.yaml
+# 	@$(KIBOT_CMD) -s all PCBWay_drill 1>> $(LOGFILE)
 
-# ZIP file for PCBWay
-Fabrication/PCBWay/main-PCBWay_0.1.zip: config.yaml
-	@$(KIBOT_CMD) -s all PCBWay 1>> $(LOGFILE)
+# # ZIP file for PCBWay
+# Fabrication/PCBWay/main-PCBWay_0.1.zip: config.yaml
+# 	@$(KIBOT_CMD) -s all PCBWay 1>> $(LOGFILE)
 
 # Print schematic (PDF)
-Fabrication/main-schematic_0.1.pdf: main.sch config.yaml
+Fabrication/main-schematic_0.1.pdf: $(SCHEMATICS) config.yaml
 	@$(KIBOT_CMD) -s all print_sch 1>> $(LOGFILE)
 
 # Print F.Cu+Dwgs.User
@@ -216,17 +220,17 @@ Fabrication/BoM/main-ibom_0.1.html: main.kicad_pcb config.yaml
 
 # Bill of Materials in HTML format
 ## Add additional .sch files here for export
-Fabrication/BoM/main-bom_0.1.html: main.sch config.yaml
+Fabrication/BoM/main-bom_0.1.html: $(SCHEMATICS) config.yaml
 	@$(KIBOT_CMD) -s all bom_html 1>> $(LOGFILE)
 
 # Bill of Materials in XLSX format
 ## Add additional .sch files here for export
-Fabrication/BoM/main-bom_0.1.xlsx: main.sch config.yaml
+Fabrication/BoM/main-bom_0.1.xlsx: $(SCHEMATICS) config.yaml
 	@$(KIBOT_CMD) -s all bom_xlsx 1>> $(LOGFILE)
 
 # Bill of Materials in CSV format
 ## Add additional .sch files here for export
-Fabrication/BoM/main-bom_0.1.csv: main.sch config.yaml
+Fabrication/BoM/main-bom_0.1.csv: $(SCHEMATICS) config.yaml
 	@$(KIBOT_CMD) -s all bom_csv 1>> $(LOGFILE)
 
 # Gerbers for the board house
