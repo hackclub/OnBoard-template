@@ -35,7 +35,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: ERC_Output
-        path: ../src/Fabrication
+        path: src/Fabrication
 
   DRC:
     runs-on: ubuntu-latest
@@ -53,7 +53,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: DRC_Output
-        path: ../src/Fabrication
+        path: src/Fabrication
 
   FabSch:
     name: Schematic fabrication files
@@ -74,8 +74,8 @@ jobs:
       with:
         name: FabSch_Output
         path: |
-          ../src/Fabrication/
-          ../src/kibot_error.log
+          src/Fabrication/
+          src/kibot_error.log
         if-no-files-found: warn
 
   FabPCB:
@@ -97,6 +97,6 @@ jobs:
       with:
         name: FabPCB_Output
         path: |
-          ../src/Fabrication/
-          ../src/kibot_error.log
+          src/Fabrication/
+          src/kibot_error.log
         if-no-files-found: warn
