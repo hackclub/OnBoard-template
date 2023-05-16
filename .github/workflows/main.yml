@@ -34,7 +34,7 @@ jobs:
     - name: Retrieve results
       uses: actions/upload-artifact@v3
       with:
-        name: ERC_Output
+        name: ERC
         path: kibot/Fabrication
 
   DRC:
@@ -52,7 +52,7 @@ jobs:
     - name: Retrieve results
       uses: actions/upload-artifact@v3
       with:
-        name: DRC_Output
+        name: DRC
         path: kibot/Fabrication
 
   FabSch:
@@ -72,7 +72,7 @@ jobs:
       if: ${{ always() }}
       uses: actions/upload-artifact@v3
       with:
-        name: FabSch_Output
+        name: FabSch
         path: |
           kibot/Fabrication/
           kibot/kibot_error.log
@@ -95,7 +95,7 @@ jobs:
       if: ${{ always() }}
       uses: actions/upload-artifact@v3
       with:
-        name: FabPCB_Output
+        name: FabPCB
         path: |
           kibot/Fabrication/
           kibot/kibot_error.log
