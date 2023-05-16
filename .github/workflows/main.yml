@@ -29,7 +29,7 @@ jobs:
 
     - name: Run ERC
       run: |
-        make -C design-check erc
+        make -C kibot erc
 
     - name: Retrieve results
       uses: actions/upload-artifact@v3
@@ -47,7 +47,7 @@ jobs:
 
     - name: Run DRC
       run: |
-        make -C src drc
+        make -C kibot drc
 
     - name: Retrieve results
       uses: actions/upload-artifact@v3
@@ -66,7 +66,7 @@ jobs:
 
     - name: Run schematic stuff
       run: |
-        make -C src sch_fab
+        make -C kibot sch_fab
 
     - name: Retrieve results
       if: ${{ always() }}
@@ -89,7 +89,7 @@ jobs:
 
     - name: Run PCB stuff
       run: |
-        make -C src pcb_fab
+        make -C kibot pcb_fab
 
     - name: Retrieve results
       if: ${{ always() }}
