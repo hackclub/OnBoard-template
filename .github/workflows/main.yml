@@ -29,7 +29,7 @@ jobs:
 
     - name: Run ERC
       run: |
-        make -f design-check -C src erc
+        make -C design-check erc
 
     - name: Retrieve results
       uses: actions/upload-artifact@v3
