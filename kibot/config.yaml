@@ -193,7 +193,7 @@ outputs:
   - name: pcb_top_g
     comment: "PCB render top green"
     type: pcbdraw
-    dir: PCB/green
+    dir: Renders/green
     options:
       format: jpg
       show_components: none
@@ -202,7 +202,7 @@ outputs:
   - name: pcb_bot_g
     comment: "PCB render bottom green"
     type: pcbdraw
-    dir: PCB/green
+    dir: Renders/green
     options:
       format: jpg
       bottom: True
@@ -212,7 +212,7 @@ outputs:
   - name: pcb_top_b
     comment: "PCB render top blue"
     type: pcbdraw
-    dir: PCB/blue
+    dir: Renders/blue
     options:
       format: jpg
       style: set-blue-enig
@@ -222,7 +222,7 @@ outputs:
   - name: pcb_bot_b
     comment: "PCB render bottom blue"
     type: pcbdraw
-    dir: PCB/blue
+    dir: Renders/blue
     options:
       format: jpg
       style: set-blue-enig
@@ -233,7 +233,7 @@ outputs:
   - name: pcb_top_r
     comment: "PCB render top red"
     type: pcbdraw
-    dir: PCB/red
+    dir: Renders/red
     options:
       format: jpg
       style: set-red-enig
@@ -243,7 +243,7 @@ outputs:
   - name: pcb_bot_r
     comment: "PCB render bottom red"
     type: pcbdraw
-    dir: PCB/red
+    dir: Renders/red
     options:
       format: jpg
       style: set-red-enig
