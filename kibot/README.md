@@ -44,7 +44,7 @@ Here is a quick rundown on what you'll find as outputs:
 ## Customization
 As is, KiBot checks any design that sits in `src` called `main.sch`, `main.kicad_pcb`, and `main.pro`. It is possible to change the name of the files to check by changing the macros in `kibot.mak` and `Makefile`. However, it is recommended to use the naming scheme of `main` for consistency across all OnBoard projects.
 
-If you have multiple `.sch` files, you can append them to the `SCHEMATICS` macro in `kibot.mak`. This will allow you to ERC and generate pdfs for all of your schematics.
+KiBot will automatically pick up multiple schematic files, so don't worry about having to append them anywhere.
 
 ## Tools
 
@@ -54,3 +54,6 @@ OnBoard's CI/CD uses:
 * [InteractiveHtmlBom](https://github.com/INTI-CMNB/InteractiveHtmlBom) to generate interactive HTML BoMs
 * [PcbDraw](https://github.com/INTI-CMNB/PcbDraw) to generate the PCB previews using different colors
 * GitHub Actions workflow
+
+## Credits
+The KiBot was forked from [INTI-CMNB](https://github.com/INTI-CMNB) and their template repository for [KiCAD CI](https://github.com/INTI-CMNB/kicad-ci-test-spora). Please look into `kibot/LICENSE` for an in-depth copyright notice from INTI-CMNB.
