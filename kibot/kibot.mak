@@ -6,9 +6,9 @@ CONFIG=config.yaml
 
 # Specify the schematic file(s) to process
 # SCHEMATICS = main.sh main2.sch
-SCHEMATICS=../src/main.sch ../src/Power.sch
-SCH=../src/main.sch
-PCB=../src/main.kicad_pcb
+SCHEMATICS=$(wildcard ../src/*.sch)
+SCH=$(wildcard ../src/*.sch)
+PCB=$(wildcard ../src/*.kicad_pcb)
 DEST=Fabrication
 KIBOT_CMD=$(KIBOT) $(DEBUG) -c $(CONFIG) -e $(SCH) -b $(PCB) -d $(DEST)
 LOGFILE=kibot_error.log

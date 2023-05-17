@@ -2,8 +2,8 @@
 DEBUG=
 MAK=kibot.mak
 CONFIG=config.yaml
-SCH=../src/main.sch
-PCB=../src/main.kicad_pcb
+SCH=$(wildcard ../src/*.sch)
+PCB=$(wildcard ../src/*.kicad_pcb)
 DEST=Fabrication
 
 all: erc_and_fab drc_and_fab

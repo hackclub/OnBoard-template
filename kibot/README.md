@@ -2,9 +2,9 @@
 Hey there! Did you know this repo automatically ERC, DRC and generates Gerbers from your design in `src`?
 
 ## How It Works
-KiBot will go through `src` and comb for any files following the default naming scheme `main.sch`, `main.kicad_pcb`, and `main.pro`. After doing so, it then runs KiCAD's own ERC/DRC tests, summarizing its results in Github Actions' Artifacts (`DRC`, `ERC`).
+Whenever a change is made to the PCB project, KiBot will go through `src` and run KiCAD's own ERC/DRC tests, summarizing its results in Github Actions' Artifacts (`DRC`, `ERC`). Specifcally, KiBot will comb for `main.sch`, `main.kicad_pcb`, and `main.pro` files and check them.
 
-After running ERC and DRC, `OnBoard-template` also outputs a `FabPCB` folder, which contains automatically generated Gerbers for JLCPCB [^2]. 
+If the board passes ERC and DRC, `OnBoard-template` will then generate fab files such as pdf schematics, gerbers, and BOMs. It will even generate JLCPCB specific Gerbers [^2]!
 
 Here is a quick rundown on what you'll find as outputs:
 ```bash
